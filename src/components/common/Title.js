@@ -1,21 +1,21 @@
 import React, {useState, useContext, useEffect, createRef, useRef} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {
-  ThemeProvider,
-  ThemeContext,
-  useThemeContext,
-} from '../../util/ThemeManager';
+// import {
+//   ThemeProvider,
+//   ThemeContext,
+//   useThemeContext,
+// } from '../../util/ThemeManager';
 
 export default function Title({
   children,
   numberOfLines = 2,
   size = 18,
 }: {
-  children: {},
-  numberOfLines: any,
-  size: any,
+  children,
+  numberOfLines,
+  size,
 }) {
-  const {theme} = useThemeContext(ThemeContext);
+  // const {theme} = useThemeContext(ThemeContext);
 
   return (
     <View style={styles.container}>
