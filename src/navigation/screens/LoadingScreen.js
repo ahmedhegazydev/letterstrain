@@ -5,72 +5,17 @@ import {
   Switch,
   Button,
   View,
+  Image,
   TouchableOpacity,
 } from 'react-native';
 
-// import { AsyncStorage } from "react-native";
-// import { KEY_STORE_LANGUAGE } from "../../constants/constants";
-// import { LocalizationContext } from "../../contexts/LocalizationContext";
-
 export default function LoadingScreen({navigation}) {
-  let storedLang = 'Arabic';
-
-  //   const _storeData = async () => {
-  //     try {
-  //       currrentLang = "";
-  //       if (storedLang == "Arabic") {
-  //         currrentLang = "English";
-  //         changeLanguage("ar");
-  //       } else {
-  //         currrentLang = "Arabic";
-  //         changeLanguage("en");
-  //       }
-  //       setLanguage(currrentLang);
-  //       await AsyncStorage.setItem(KEY_STORE_LANGUAGE, currrentLang);
-  //     } catch (error) {
-  //       console.log("error _storeData" + error);
-  //     }
-  //   };
-  //   const { locale, setLocale } = useContext(LocalizationContext);
-
-  //   const changeLanguage = lang => {
-  //     setLocale(lang);
-  //   };
-
-  //   useEffect(() => {
-  //     // _retrieveData();
-  //   });
-
-  //   const _retrieveData = async () => {
-  //     try {
-  //       const value = await AsyncStorage.getItem(KEY_STORE_LANGUAGE);
-  //       if (value !== null) {
-  //         setLanguage(value);
-  //         if (value == "Arabic") {
-  //           setLocale("en");
-  //         } else {
-  //           setLocale("ar");
-  //         }
-  //         storedLang = value;
-  //       }
-  //     } catch (error) {
-  //       console.log("error _retrieveData" + error);
-  //     }
-  //     return storedLang;
-  //   };
-
-  //   const [selectedLang, setLanguage] = useState<string>("English");
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        // style={styles.loginScreenButton}
-        onPress={() => {
-          //   _storeData();
-        }}
-        underlayColor="#fff">
-        {/* <Text style={styles.loginText}>Change To {selectedLang}</Text> */}
-      </TouchableOpacity>
+      <Image
+        source={require('../../assets/images/splash.jpeg')}
+        // source={Splash}
+        style={styles.backgroundImage}></Image>
     </View>
   );
 }
@@ -80,6 +25,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    // resizeMode: 'cover',
+    resizeMode: 'stretch',
   },
   loginScreenButton: {
     marginRight: 40,

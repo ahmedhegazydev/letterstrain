@@ -18,10 +18,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 // import PreviewNewsDetailsScreen from './PreviewNewsDetails';
 // import {ThemeContext} from '../../util/ThemeManager';
 // import {LocalizationContext} from '../../contexts/LocalizationContext';
-import {LOADING_NAME, SPLASH_NAME} from '../constants/constants';
+import {
+  LOADING_NAME,
+  SPLASH_NAME,
+  CHARACTER_CHOOSE_NAME,
+} from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import {NavigationContainer} from '@react-navigation/native';
+import CharactersChoose from './screens/CharactersChoose';
 const Stack = createStackNavigator();
 
 export default function MainContainer() {
@@ -31,13 +36,31 @@ export default function MainContainer() {
   // const Url_Details = `myapp://${MORE_DETAILS_NEWS_NAME}`;
   const Url_Details = 'myapp://details';
   const Url_All_News = 'myapp://allNews';
-
+  const leftToRightAnimation = {
+    cardStyleInterpolator: ({current, layouts}) => {
+      return {
+        cardStyle: {
+          transform: [
+            {
+              translateX: current.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [-layouts.screen.width, 0],
+              }),
+            },
+          ],
+        },
+      };
+    },
+  };
   //   const {translate} = useContext(LocalizationContext);
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
+          gestureEnabled: true,
+          gestureDirection: 'horizontal',
+          //   animation: 'fade',
           // headerTitleStyle: {
           //   paddingLeft: "20%",
           //   paddingRight: "20%",
@@ -67,6 +90,15 @@ export default function MainContainer() {
           options={({route}) => ({title: 'Loading', headerShown: false})}
           name={LOADING_NAME}
           component={LoadingScreen}
+        />
+        <Stack.Screen
+          options={({route}) => ({
+            title: 'CharactersChoose',
+            headerShown: false,
+            leftToRightAnimation,
+          })}
+          name={CHARACTER_CHOOSE_NAME}
+          component={CharactersChoose}
         />
       </Stack.Navigator>
     </NavigationContainer>
