@@ -6,10 +6,29 @@ import {
   Button,
   View,
   Image,
+  TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
 
 export default function CharactersChoose({navigation}) {
+  const [chooseCh1, setChooseCh1] = useState(false);
+  const [chooseCh2, setChooseCh2] = useState(false);
+  const [chooseCh3, setChooseCh3] = useState(false);
+  const [chooseCh4, setChooseCh4] = useState(false);
+
+  const _onPressCharacter1 = () => {
+    setChooseCh1(!chooseCh1);
+  };
+  const _onPressCharacter2 = () => {
+    setChooseCh2(!chooseCh2);
+  };
+  const _onPressCharacter3 = () => {
+    setChooseCh3(!chooseCh3);
+  };
+  const _onPressCharacter4 = () => {
+    setChooseCh4(!chooseCh4);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -38,24 +57,54 @@ export default function CharactersChoose({navigation}) {
 
               //   flex: 1,
             }}>
-            <View style={styles.ch_image}>
-              <Image
-                style={{
-                  flex: 1,
-                  width: 100,
-                }}
-                source={require('../../assets/images/splash.jpeg')}
-              />
-            </View>
-            <View style={styles.ch_image}>
-              <Image
-                style={{
-                  flex: 1,
-                  width: 100,
-                }}
-                source={require('../../assets/images/splash.jpeg')}
-              />
-            </View>
+            <TouchableWithoutFeedback onPress={_onPressCharacter1}>
+              <View style={styles.ch_image}>
+                <Image
+                  style={styles.image_view}
+                  source={
+                    chooseCh1
+                      ? require('../../assets/images/ch1-choose.png')
+                      : require('../../assets/images/ch1.png')
+                  }
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={_onPressCharacter2}>
+              <View style={styles.ch_image}>
+                <Image
+                  style={styles.image_view}
+                  source={
+                    chooseCh2
+                      ? require('../../assets/images/ch2-choose.png')
+                      : require('../../assets/images/ch2.png')
+                  }
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={_onPressCharacter3}>
+              <View style={styles.ch_image}>
+                <Image
+                  style={styles.image_view}
+                  source={
+                    chooseCh3
+                      ? require('../../assets/images/ch3-choose.png')
+                      : require('../../assets/images/ch3.png')
+                  }
+                />
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={_onPressCharacter4}>
+              <View style={styles.ch_image}>
+                <Image
+                  style={styles.image_view}
+                  source={
+                    chooseCh4
+                      ? require('../../assets/images/ch4-choose.png')
+                      : require('../../assets/images/ch4.png')
+                  }
+                />
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </View>
@@ -64,12 +113,16 @@ export default function CharactersChoose({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  image_view: {
+    flex: 1,
+    width: 160,
+  },
   ch_image: {
-    width: 50,
-    height: 200,
+    width: 80,
+    height: 240,
     marginBottom: 90,
-    marginRight: 40,
-    marginLeft: 40,
+    marginRight: 90,
+    marginLeft: 0,
   },
 
   flex1: {

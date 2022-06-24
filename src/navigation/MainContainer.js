@@ -81,7 +81,7 @@ export default function MainContainer() {
             </View>
           ),
         }}>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={({route}) => ({title: 'Splash', headerShown: false})}
           name={SPLASH_NAME}
           component={SplashScreen}
@@ -90,7 +90,7 @@ export default function MainContainer() {
           options={({route}) => ({title: 'Loading', headerShown: false})}
           name={LOADING_NAME}
           component={LoadingScreen}
-        />
+        /> */}
         <Stack.Screen
           options={({route}) => ({
             title: 'CharactersChoose',

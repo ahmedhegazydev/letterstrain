@@ -22,7 +22,7 @@ export default function SplashScreen({}) {
     setTimeout(() => {
       //   Alert.alert('I am appearing...', 'After 5 seconds!');
       navigation.navigate(CHARACTER_CHOOSE_NAME);
-    }, 3000);
+    }, 3500);
   }, []);
 
   return (
