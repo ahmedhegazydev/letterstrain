@@ -23,12 +23,14 @@ import {
   SPLASH_NAME,
   CHARACTER_CHOOSE_NAME,
   NUMBERS_OR_LETTERS_CHOOSE_NAME,
+  BG_SHAPE_CHOOSE_NAME,
 } from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import CharactersChoose from './screens/CharactersChoose';
 import ChooseNumbersOrLetters from './screens/ChooseNumbersOrLetters';
+import ChooseBgAndShape from './screens/ChooseBgAndShape';
 const Stack = createStackNavigator();
 
 export default function MainContainer() {
@@ -110,6 +112,15 @@ export default function MainContainer() {
           })}
           name={NUMBERS_OR_LETTERS_CHOOSE_NAME}
           component={ChooseNumbersOrLetters}
+        />
+        <Stack.Screen
+          options={({route}) => ({
+            title: 'ChooseBgAndShape',
+            headerShown: false,
+            leftToRightAnimation,
+          })}
+          name={BG_SHAPE_CHOOSE_NAME}
+          component={ChooseBgAndShape}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -10,23 +10,18 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import {BG_SHAPE_CHOOSE_NAME} from '../../constants/constants';
 
-export default function ChooseNumbersOrLetters({}) {
+export default function ChooseBgAndShape({}) {
   // const [chooseCh1, setChooseCh1] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
 
   const _onPressNumbers = () => {
-    navigation.navigate(BG_SHAPE_CHOOSE_NAME, {
-      choosen_ch: route.params.choosen_ch,
-    });
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
   };
 
   const _onPressLetters = () => {
-    navigation.navigate(BG_SHAPE_CHOOSE_NAME, {
-      choosen_ch: route.params.choosen_ch,
-    });
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
   };
 
   useEffect(() => {
@@ -99,7 +94,7 @@ export default function ChooseNumbersOrLetters({}) {
 
               //   flex: 1,
             }}>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={_onPressNumbers}>
               <View style={styles.ch_image1}>
                 <Image
                   style={styles.image_view}
@@ -107,7 +102,7 @@ export default function ChooseNumbersOrLetters({}) {
                 />
               </View>
             </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={_onPressLetters}>
               <View style={styles.ch_image2}>
                 <Image
                   style={styles.image_view}
@@ -123,26 +118,6 @@ export default function ChooseNumbersOrLetters({}) {
       <View style={styles.characters_choosen_}>
         <View style={styles.flex1_choosen_ch}>
           {/* <Text>daaasasa </Text> */}
-          <TouchableWithoutFeedback onPress={_onPressLetters}>
-            <View
-              style={{
-                flex: 1,
-                width: '100%',
-                height: '100%',
-                // backgroundColor: '#ffdd22',
-              }}
-            />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={_onPressNumbers}>
-            <View
-              style={{
-                flex: 1,
-                width: '100%',
-                height: '100%',
-                // backgroundColor: '#ffd222',
-              }}
-            />
-          </TouchableWithoutFeedback>
         </View>
         <View style={styles.flex2_chosen_ch}>
           {/* <Text>daaasasa </Text> */}
@@ -248,8 +223,6 @@ const styles = StyleSheet.create({
   flex1_choosen_ch: {
     // backgroundColor: '#FFFFFF',
     backgroundColor: '#00000000',
-    // backgroundColor: '#FDDFFF',
-    flexDirection: 'row',
     // height: '50%',
     width: '100%',
     // height: '100%',
