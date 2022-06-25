@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState, useEffect, useContext} from 'react';
 import {
   StyleSheet,
@@ -9,7 +10,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default function LoadingScreen({navigation}) {
+export default function LoadingScreen({}) {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Image

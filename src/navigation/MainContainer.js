@@ -22,11 +22,13 @@ import {
   LOADING_NAME,
   SPLASH_NAME,
   CHARACTER_CHOOSE_NAME,
+  NUMBERS_OR_LETTERS_CHOOSE_NAME,
 } from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import CharactersChoose from './screens/CharactersChoose';
+import ChooseNumbersOrLetters from './screens/ChooseNumbersOrLetters';
 const Stack = createStackNavigator();
 
 export default function MainContainer() {
@@ -99,6 +101,15 @@ export default function MainContainer() {
           })}
           name={CHARACTER_CHOOSE_NAME}
           component={CharactersChoose}
+        />
+        <Stack.Screen
+          options={({route}) => ({
+            title: 'ChooseNumbersOrLetters',
+            headerShown: false,
+            leftToRightAnimation,
+          })}
+          name={NUMBERS_OR_LETTERS_CHOOSE_NAME}
+          component={ChooseNumbersOrLetters}
         />
       </Stack.Navigator>
     </NavigationContainer>

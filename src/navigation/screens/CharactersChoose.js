@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState, useEffect, useContext} from 'react';
 import {
   StyleSheet,
@@ -9,24 +10,38 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
+import {NUMBERS_OR_LETTERS_CHOOSE_NAME} from '../../constants/constants';
 
-export default function CharactersChoose({navigation}) {
+export default function CharactersChoose({}) {
   const [chooseCh1, setChooseCh1] = useState(false);
   const [chooseCh2, setChooseCh2] = useState(false);
   const [chooseCh3, setChooseCh3] = useState(false);
   const [chooseCh4, setChooseCh4] = useState(false);
+  const navigation = useNavigation();
 
   const _onPressCharacter1 = () => {
     setChooseCh1(!chooseCh1);
+    navigation.navigate(NUMBERS_OR_LETTERS_CHOOSE_NAME, {
+      choosen_ch: 1,
+    });
   };
   const _onPressCharacter2 = () => {
     setChooseCh2(!chooseCh2);
+    navigation.navigate(NUMBERS_OR_LETTERS_CHOOSE_NAME, {
+      choosen_ch: 2,
+    });
   };
   const _onPressCharacter3 = () => {
     setChooseCh3(!chooseCh3);
+    navigation.navigate(NUMBERS_OR_LETTERS_CHOOSE_NAME, {
+      choosen_ch: 3,
+    });
   };
   const _onPressCharacter4 = () => {
     setChooseCh4(!chooseCh4);
+    navigation.navigate(NUMBERS_OR_LETTERS_CHOOSE_NAME, {
+      choosen_ch: 4,
+    });
   };
 
   return (
