@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {BG_SHAPE_CHOOSE_NAME} from '../../constants/constants';
+import showChoosenChImage from '../../utils/Utils.js';
 
 export default function ChooseNumbersOrLetters({}) {
   // const [chooseCh1, setChooseCh1] = useState(false);
@@ -33,43 +34,43 @@ export default function ChooseNumbersOrLetters({}) {
     // alert(route.params.choosen_ch);
   });
 
-  const showChoosenChImage = () => {
-    if (route.params.choosen_ch) {
-      if (route.params.choosen_ch == 1) {
-        return (
-          <Image
-            style={styles.image_view_chosen_character}
-            source={require('../../assets/images/ch1.png')}
-          />
-        );
-      } else {
-        if (route.params.choosen_ch == 2) {
-          return (
-            <Image
-              style={styles.image_view_chosen_character}
-              source={require('../../assets/images/ch2.png')}
-            />
-          );
-        } else {
-          if (route.params.choosen_ch == 3) {
-            return (
-              <Image
-                style={styles.image_view_chosen_character}
-                source={require('../../assets/images/ch3.png')}
-              />
-            );
-          } else {
-            return (
-              <Image
-                style={styles.image_view_chosen_character}
-                source={require('../../assets/images/ch4.png')}
-              />
-            );
-          }
-        }
-      }
-    }
-  };
+  // const showChoosenChImage = () => {
+  //   if (route.params.choosen_ch) {
+  //     if (route.params.choosen_ch == 1) {
+  //       return (
+  //         <Image
+  //           style={styles.image_view_chosen_character}
+  //           source={require('../../assets/images/ch1.png')}
+  //         />
+  //       );
+  //     } else {
+  //       if (route.params.choosen_ch == 2) {
+  //         return (
+  //           <Image
+  //             style={styles.image_view_chosen_character}
+  //             source={require('../../assets/images/ch2.png')}
+  //           />
+  //         );
+  //       } else {
+  //         if (route.params.choosen_ch == 3) {
+  //           return (
+  //             <Image
+  //               style={styles.image_view_chosen_character}
+  //               source={require('../../assets/images/ch3.png')}
+  //             />
+  //           );
+  //         } else {
+  //           return (
+  //             <Image
+  //               style={styles.image_view_chosen_character}
+  //               source={require('../../assets/images/ch4.png')}
+  //             />
+  //           );
+  //         }
+  //       }
+  //     }
+  //   }
+  // };
 
   return (
     <View style={styles.container}>

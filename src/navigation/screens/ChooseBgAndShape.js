@@ -10,8 +10,8 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-
-export default function ChooseBgAndShape({}) {
+import showChoosenChImage from '../../utils/Utils.js';
+export default function ChoosBgAndShape({}) {
   // const [chooseCh1, setChooseCh1] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
@@ -28,119 +28,41 @@ export default function ChooseBgAndShape({}) {
     // alert(route.params.choosen_ch);
   });
 
-  const showChoosenChImage = () => {
-    if (route.params.choosen_ch) {
-      if (route.params.choosen_ch == 1) {
-        return (
-          <Image
-            style={styles.image_view_chosen_character}
-            source={require('../../assets/images/ch1.png')}
-          />
-        );
-      } else {
-        if (route.params.choosen_ch == 2) {
-          return (
-            <Image
-              style={styles.image_view_chosen_character}
-              source={require('../../assets/images/ch2.png')}
-            />
-          );
-        } else {
-          if (route.params.choosen_ch == 3) {
-            return (
-              <Image
-                style={styles.image_view_chosen_character}
-                source={require('../../assets/images/ch3.png')}
-              />
-            );
-          } else {
-            return (
-              <Image
-                style={styles.image_view_chosen_character}
-                source={require('../../assets/images/ch4.png')}
-              />
-            );
-          }
-        }
-      }
-    }
-  };
-
   return (
-    <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <Image
-          source={require('../../assets/images/clouds.png')}
-          style={styles.backgroundImage}
-        />
-      </View>
-
-      {/* <View style={styles.footer}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#FFEC00',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // flexDirection: 'row',
+        flexDirection: 'row-reverse',
+      }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Image
           source={require('../../assets/images/Beehive2.png')}
-          style={styles.backgroundImageFooter}
+          style={{width: '100%', height: '100%'}}
         />
-      </View> */}
-
-      <View style={styles.characters}>
-        <View style={styles.flex1}>{/* <Text>daaasasa </Text> */}</View>
-        <View style={styles.flex2}>
-          {/* <Text>daaasasa </Text> */}
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-
-              //   flex: 1,
-            }}>
-            <TouchableWithoutFeedback onPress={_onPressNumbers}>
-              <View style={styles.ch_image1}>
-                <Image
-                  style={styles.image_view}
-                  source={require('../../assets/images/button-numbers.png')}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={_onPressLetters}>
-              <View style={styles.ch_image2}>
-                <Image
-                  style={styles.image_view}
-                  source={require('../../assets/images/button-letters.png')}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
-        <View style={styles.flex3}></View>
       </View>
 
-      <View style={styles.characters_choosen_}>
-        <View style={styles.flex1_choosen_ch}>
-          {/* <Text>daaasasa </Text> */}
-        </View>
-        <View style={styles.flex2_chosen_ch}>
-          {/* <Text>daaasasa </Text> */}
-          <View
-            style={{
-              flexDirection: 'row',
-              // justifyContent: 'space-between',
-              justifyContent: 'center',
-              alignItems: 'center',
-
-              //   flex: 1,
-            }}>
-            <TouchableWithoutFeedback>
-              <View style={styles.image_chosen_character}>
-                {/* <Image
-                  style={styles.image_view_chosen_character}
-                  source={require('../../assets/images/ch0.png')}
-                /> */}
-                {showChoosenChImage()}
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </View>
+      <View
+        styles={{
+          // flex: 1,
+          width: '70%',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          backgroundColor: '#FFFFFF',
+          height: '100%',
+          // flexDirection: 'row',
+          // position: 'absolute',
+        }}>
+        <Text>dsdsdsd</Text>
+        <Text>dsdsdsd</Text>
       </View>
     </View>
   );
@@ -198,7 +120,8 @@ const styles = StyleSheet.create({
   },
   flex2: {
     // backgroundColor: '#FFFFFF',
-    backgroundColor: '#FFEC00',
+    // backgroundColor: '#FFEC00',
+    backgroundColor: '#00000000',
 
     // height: '50%',
     width: '100%',
@@ -251,6 +174,8 @@ const styles = StyleSheet.create({
     // height: 200,
     height: '100%',
     width: '100%',
+    flexDirection: 'row-reverse',
+
     // backgroundColor: '#FFDDCC',
     backgroundColor: '#00000000', //transparent
     // backgroundColor: '#FFEC00', //yellow
@@ -265,6 +190,9 @@ const styles = StyleSheet.create({
     // height: 200,
     height: '70%',
     width: '100%',
+    // flexDirection: 'row',
+    flexDirection: 'row-reverse',
+
     // backgroundColor: '#FFDDCC',
     backgroundColor: '#00000000', //transparent
     // backgroundColor: '#FFEC00', //yellow
@@ -278,6 +206,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFEC00',
     justifyContent: 'center',
     alignItems: 'center',
+    // flexDirection: 'row',
+    flexDirection: 'row-reverse',
   },
 
   backgroundImageFooter: {
@@ -292,6 +222,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#FFEC00',
     flex: 1, // pushes the footer to the end of the screen
+    // flexDirection: 'row',
+    // flexDirection: 'row-reverse',
   },
   footer: {
     backgroundColor: '#FFFFFF',
@@ -301,9 +233,11 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     // resizeMode: 'cover',
-    resizeMode: 'stretch',
-    // height: 200,
-    marginTop: -200,
+    // resizeMode: 'stretch',
+    // resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+    // marginTop: -200,
   },
   loginScreenButton: {
     marginRight: 40,

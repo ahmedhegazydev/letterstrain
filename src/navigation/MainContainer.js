@@ -95,7 +95,7 @@ export default function MainContainer() {
           name={LOADING_NAME}
           component={LoadingScreen}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           options={({route}) => ({
             title: 'CharactersChoose',
             headerShown: false,
@@ -103,8 +103,8 @@ export default function MainContainer() {
           })}
           name={CHARACTER_CHOOSE_NAME}
           component={CharactersChoose}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           options={({route}) => ({
             title: 'ChooseNumbersOrLetters',
             headerShown: false,
@@ -112,7 +112,7 @@ export default function MainContainer() {
           })}
           name={NUMBERS_OR_LETTERS_CHOOSE_NAME}
           component={ChooseNumbersOrLetters}
-        />
+        /> */}
         <Stack.Screen
           options={({route}) => ({
             title: 'ChooseBgAndShape',
