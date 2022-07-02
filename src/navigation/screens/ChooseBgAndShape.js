@@ -10,18 +10,49 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import showChoosenChImage from '../../utils/Utils.js';
+import {SelectedShape} from '../../constants/constants.js';
+import ShowChoosenChImage from '../../utils/Utils.js';
 export default function ChoosBgAndShape({}) {
-  // const [chooseCh1, setChooseCh1] = useState(false);
+  const [selectedShape, setSelectedShape] = useState(false);
+  const [selectedBg, setSelectedBg] = useState(false);
+
   const navigation = useNavigation();
   const route = useRoute();
 
-  const _onPressNumbers = () => {
-    // navigation.navigate(CHARACTER_CHOOSE_NAME);
+  const _onPressAnimalLetters = () => {
+    navigation.navigate(START_GAME_CHOOSE_NAME, {
+      selectedShape: SelectedShape.Animals,
+      selectedBg: 0,
+    });
+    // alert('_onPressAnimalLetters');
   };
 
-  const _onPressLetters = () => {
+  const _onPressPlantsLetters = () => {
+    navigation.navigate(START_GAME_CHOOSE_NAME, {
+      selectedShape: 0,
+      selectedBg: 0,
+    });
+    // alert('_onPressPlantsLetters');
+  };
+
+  const _onPressBlanckLettersAbove = () => {
     // navigation.navigate(CHARACTER_CHOOSE_NAME);
+    alert('_onPressBlanckLettersAbove');
+  };
+
+  const _onPressCityButton = () => {
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
+    alert('_onPressCityButton');
+  };
+
+  const _onPressCountryButton = () => {
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
+    alert('_onPressCountryButton');
+  };
+
+  const _onPressBlanckLettersDown = () => {
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
+    alert('_onPressBlanckLettersDown');
   };
 
   useEffect(() => {
@@ -29,49 +60,234 @@ export default function ChoosBgAndShape({}) {
   });
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#FFEC00',
-        justifyContent: 'center',
-        alignItems: 'center',
-        // flexDirection: 'row',
-        flexDirection: 'row-reverse',
-      }}>
+    <View style={styles.container}>
+      {/* <View style={styles.contentContainer}>
+        <Image
+          source={require('../../assets/images/clouds.png')}
+          style={styles.backgroundImage}
+        />
+      </View> */}
+
       <View
         style={{
+          height: '100%',
+          width: '100%',
           flex: 1,
+          // flexDirection: 'row',
+          flexDirection: 'row-reverse',
+          // backgroundColor: 'green',
+          // backgroundColor: '#00000000', //transparent
+          // backgroundColor: '#FFEC00', //yellow
+          // backgroundColor: '#FFFFFF',
           justifyContent: 'center',
           alignItems: 'center',
+          // position: 'absolute',
         }}>
-        <Image
-          source={require('../../assets/images/Beehive2.png')}
-          style={{width: '100%', height: '100%'}}
+        {/* <View style={styles.flex1_choosen_ch}>
+          <Text>dsdsdss</Text>
+        </View> */}
+        <View
+          style={{
+            // backgroundColor: '#FFFFFF',
+            // height: '50%',
+            // width: '100%',
+            flex: 1,
+            // height: '100%',
+          }}>
+          <View
+            style={{
+              // flexDirection: 'row',
+              // justifyContent: 'space-between',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{
+                // flex: 1,
+                width: '100%',
+                height: '100%',
+                opacity: 0.2,
+              }}
+              source={require('../../assets/images/Beehive2.png')}
+            />
+
+            <View
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                // backgroundColor: 'green',
+              }}>
+              <View
+                style={{
+                  flex: 1,
+                  // backgroundColor: 'yellow'
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row-reverse',
+                }}>
+                <TouchableWithoutFeedback onPress={_onPressAnimalLetters}>
+                  <View style={{width: 200, height: 200, padding: 10}}>
+                    <Image
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../assets/images/animal-letters.png')}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={_onPressPlantsLetters}>
+                  <View style={{width: 155, height: 155, padding: 10}}>
+                    <Image
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../assets/images/plants-letters.png')}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={_onPressBlanckLettersAbove}>
+                  <View style={{width: 155, height: 155, padding: 10}}>
+                    <Image
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../assets/images/blank-letters.png')}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  // backgroundColor: 'red'
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    flex: 1,
+                    // backgroundColor: 'yellow'
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row-reverse',
+                  }}>
+                  <TouchableWithoutFeedback onPress={_onPressCityButton}>
+                    <View style={{width: 175, height: 175, padding: 10}}>
+                      <Image
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/city-button.png')}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
+                  <TouchableWithoutFeedback onPress={_onPressCountryButton}>
+                    <View style={{width: 175, height: 175, padding: 10}}>
+                      <Image
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/country-button.png')}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
+                  <TouchableWithoutFeedback onPress={_onPressBlanckLettersDown}>
+                    <View style={{width: 155, height: 155, padding: 10}}>
+                      <Image
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/blank-letters.png')}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            height: '100%',
+            width: '1.5%',
+            // flex: 1,
+            backgroundColor: '#fe8d1a',
+          }}
+        />
+        <View
+          style={{
+            height: '100%',
+            width: '13%',
+            // flex: 1,
+            backgroundColor: '#ffffff',
+          }}
         />
       </View>
 
-      <View
-        styles={{
-          // flex: 1,
-          width: '70%',
-          // justifyContent: 'center',
-          // alignItems: 'center',
-          backgroundColor: '#FFFFFF',
-          height: '100%',
-          // flexDirection: 'row',
-          // position: 'absolute',
-        }}>
-        <Text>dsdsdsd</Text>
-        <Text>dsdsdsd</Text>
+      <View style={styles.characters_choosen_}>
+        <View style={styles.flex1_choosen_ch}>
+          <TouchableWithoutFeedback>
+            <View style={styles.ch_image}>
+              {/* <Image
+                style={styles.image_view}
+                source={require('../../assets/images/ch3.png')}
+              /> */}
+              <ShowChoosenChImage
+                choosen_ch={route.params.choosen_ch}
+                style={styles.image_view}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.flex2_chosen_ch}>
+          <View
+            style={{
+              // flexDirection: 'row',
+              // justifyContent: 'space-between',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}></View>
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  border_style: {
+    borderColor: 'red',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+  },
+  ch_image: {
+    width: '100%',
+    height: '100%',
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // marginBottom: 90,
+    // marginRight: 90,
+    // marginLeft: 0,
+  },
   image_view: {
-    flex: 1,
-    width: 340,
+    // flex: 1,
+    width: 150,
+    height: 200,
+    marginBottom: -250,
+    marginLeft: -10,
   },
   image_view_chosen_character: {
     flex: 1,
@@ -120,8 +336,7 @@ const styles = StyleSheet.create({
   },
   flex2: {
     // backgroundColor: '#FFFFFF',
-    // backgroundColor: '#FFEC00',
-    backgroundColor: '#00000000',
+    backgroundColor: '#FFEC00',
 
     // height: '50%',
     width: '100%',
@@ -143,22 +358,40 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  characters_choosen_: {
+    // flex: 1,
+    // height: 200,
+    height: '100%',
+    width: '100%',
+    flexDirection: 'row',
+    // flexDirection: 'row-reverse',
+    // backgroundColor: 'green',
+    // backgroundColor: '#00000000', //transparent
+    // backgroundColor: '#FFEC00', //yellow
+    // backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
   flex1_choosen_ch: {
     // backgroundColor: '#FFFFFF',
-    backgroundColor: '#00000000',
+    // backgroundColor: '#00000000',
+    // backgroundColor: 'red',
+    // flexDirection: 'row',
     // height: '50%',
     width: '100%',
-    // height: '100%',
-    flex: 5,
+    // width: 300,
+    height: '100%',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   flex2_chosen_ch: {
-    backgroundColor: '#FFFFFF',
+    // backgroundColor: '#FFFFFF',
     // height: '50%',
     width: '100%',
-    flex: 1,
-    // height: '100%',
+    flex: 3,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -169,30 +402,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  characters_choosen_: {
-    // flex: 1,
-    // height: 200,
-    height: '100%',
-    width: '100%',
-    flexDirection: 'row-reverse',
 
-    // backgroundColor: '#FFDDCC',
-    backgroundColor: '#00000000', //transparent
-    // backgroundColor: '#FFEC00', //yellow
-    // backgroundColor: '#FFFFFF',
-
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-  },
   characters: {
     // flex: 1,
     // height: 200,
     height: '70%',
     width: '100%',
-    // flexDirection: 'row',
-    flexDirection: 'row-reverse',
-
     // backgroundColor: '#FFDDCC',
     backgroundColor: '#00000000', //transparent
     // backgroundColor: '#FFEC00', //yellow
@@ -206,8 +421,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFEC00',
     justifyContent: 'center',
     alignItems: 'center',
-    // flexDirection: 'row',
-    flexDirection: 'row-reverse',
   },
 
   backgroundImageFooter: {
@@ -222,8 +435,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#FFEC00',
     flex: 1, // pushes the footer to the end of the screen
-    // flexDirection: 'row',
-    // flexDirection: 'row-reverse',
   },
   footer: {
     backgroundColor: '#FFFFFF',
@@ -233,11 +444,9 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     // resizeMode: 'cover',
-    // resizeMode: 'stretch',
-    // resizeMode: 'contain',
-    width: '100%',
-    height: '100%',
-    // marginTop: -200,
+    resizeMode: 'stretch',
+    // height: 200,
+    marginTop: -200,
   },
   loginScreenButton: {
     marginRight: 40,

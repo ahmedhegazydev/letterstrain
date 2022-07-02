@@ -11,7 +11,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {BG_SHAPE_CHOOSE_NAME} from '../../constants/constants';
-import showChoosenChImage from '../../utils/Utils.js';
+// import showChoosenChImage from '../../utils/Utils.js';
+import ShowChoosenChImage from '../../utils/Utils.js';
 
 export default function ChooseNumbersOrLetters({}) {
   // const [chooseCh1, setChooseCh1] = useState(false);
@@ -162,7 +163,16 @@ export default function ChooseNumbersOrLetters({}) {
                   style={styles.image_view_chosen_character}
                   source={require('../../assets/images/ch0.png')}
                 /> */}
-                {showChoosenChImage()}
+                {/* {showChoosenChImage()} */}
+                <ShowChoosenChImage
+                  choosen_ch={route.params.choosen_ch}
+                  style={{
+                    flex: 1,
+                    width: 200,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                />
               </View>
             </TouchableWithoutFeedback>
           </View>

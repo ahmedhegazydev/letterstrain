@@ -24,6 +24,7 @@ import {
   CHARACTER_CHOOSE_NAME,
   NUMBERS_OR_LETTERS_CHOOSE_NAME,
   BG_SHAPE_CHOOSE_NAME,
+  START_GAME_CHOOSE_NAME,
 } from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
@@ -31,6 +32,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import CharactersChoose from './screens/CharactersChoose';
 import ChooseNumbersOrLetters from './screens/ChooseNumbersOrLetters';
 import ChooseBgAndShape from './screens/ChooseBgAndShape';
+import PlayTrainScreen from './screens/PlayTrainScreen';
 const Stack = createStackNavigator();
 
 export default function MainContainer() {
@@ -122,6 +124,15 @@ export default function MainContainer() {
           name={BG_SHAPE_CHOOSE_NAME}
           component={ChooseBgAndShape}
         />
+        {/* <Stack.Screen
+          options={({route}) => ({
+            title: 'ChooseBgAndShape',
+            headerShown: false,
+            leftToRightAnimation,
+          })}
+          name={START_GAME_CHOOSE_NAME}
+          component={PlayTrainScreen}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

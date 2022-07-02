@@ -11,7 +11,7 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import GifImage from '@lowkey/react-native-gif';
+// import GifImage from '@lowkey/react-native-gif';
 
 import Splash from '../../assets/images/splash.jpeg';
 import {CHARACTER_CHOOSE_NAME} from '../../constants/constants';
