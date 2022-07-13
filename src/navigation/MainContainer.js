@@ -25,6 +25,8 @@ import {
   NUMBERS_OR_LETTERS_CHOOSE_NAME,
   BG_SHAPE_CHOOSE_NAME,
   START_GAME_CHOOSE_NAME,
+  SelectedShape,
+  NumsOrLetters,
 } from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
@@ -64,8 +66,8 @@ export default function MainContainer() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          gestureEnabled: true,
-          gestureDirection: 'horizontal',
+          // gestureEnabled: true,
+          // gestureDirection: 'horizontal',
           //   animation: 'fade',
           // headerTitleStyle: {
           //   paddingLeft: "20%",
@@ -105,8 +107,10 @@ export default function MainContainer() {
           })}
           name={CHARACTER_CHOOSE_NAME}
           component={CharactersChoose}
+                    initialParams={{itemId: 100}}
+
         /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           options={({route}) => ({
             title: 'ChooseNumbersOrLetters',
             headerShown: false,
@@ -114,7 +118,8 @@ export default function MainContainer() {
           })}
           name={NUMBERS_OR_LETTERS_CHOOSE_NAME}
           component={ChooseNumbersOrLetters}
-        /> */}
+          initialParams={{itemId: 100}}
+        />
         <Stack.Screen
           options={({route}) => ({
             title: 'ChooseBgAndShape',
@@ -123,16 +128,19 @@ export default function MainContainer() {
           })}
           name={BG_SHAPE_CHOOSE_NAME}
           component={ChooseBgAndShape}
+          // initialParams={{numOrLetter: NumsOrLetters.Numbers}}
+          // initialParams={{numOrLetter: NumsOrLetters.Letters}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           options={({route}) => ({
-            title: 'ChooseBgAndShape',
+            title: 'PlayTrainScreen',
             headerShown: false,
             leftToRightAnimation,
           })}
+          initialParams={{itemId: 100}}
           name={START_GAME_CHOOSE_NAME}
           component={PlayTrainScreen}
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

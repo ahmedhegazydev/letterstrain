@@ -10,9 +10,9 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import {BG_SHAPE_CHOOSE_NAME} from '../../constants/constants';
+import {BG_SHAPE_CHOOSE_NAME, NumsOrLetters} from '../../constants/constants';
 // import showChoosenChImage from '../../utils/Utils.js';
-import ShowChoosenChImage from '../../utils/Utils.js';
+import {ShowChoosenChImage} from '../../utils/Utils.js';
 
 export default function ChooseNumbersOrLetters({}) {
   // const [chooseCh1, setChooseCh1] = useState(false);
@@ -22,12 +22,14 @@ export default function ChooseNumbersOrLetters({}) {
   const _onPressNumbers = () => {
     navigation.navigate(BG_SHAPE_CHOOSE_NAME, {
       choosen_ch: route.params.choosen_ch,
+      numOrLetter: NumsOrLetters.Numbers,
     });
   };
 
   const _onPressLetters = () => {
     navigation.navigate(BG_SHAPE_CHOOSE_NAME, {
       choosen_ch: route.params.choosen_ch,
+      numOrLetter: NumsOrLetters.Letters,
     });
   };
 

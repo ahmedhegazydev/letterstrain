@@ -15,7 +15,7 @@ import {
 
 // import Splash from '../../assets/images/splash.jpeg';
 // import {CHARACTER_CHOOSE_NAME} from '../../constants/constants';
-export default ShowChoosenChImage = props => {
+export const ShowChoosenChImage = props => {
   // var choosen_ch = route.params.choosen_ch;
   // var choosen_ch = 1;
   const {style, choosen_ch: choosen_ch = 1} = props;
@@ -50,6 +50,45 @@ export default ShowChoosenChImage = props => {
             <Image
               style={[styles.image_view_chosen_character, style]}
               source={require('../assets/images/ch4.png')}
+            />
+          );
+        }
+      }
+    }
+  }
+};
+export const ShowChoosenTrainCarImage = props => {
+  const {style, choosen_ch: choosen_ch = 1} = props;
+
+  if (choosen_ch) {
+    if (choosen_ch == 1) {
+      return (
+        <Image
+          style={[styles.image_view_chosen_character, style]}
+          source={require('../assets/images/train_ch_1.png')}
+        />
+      );
+    } else {
+      if (choosen_ch == 2) {
+        return (
+          <Image
+            style={[styles.image_view_chosen_character, style]}
+            source={require('../assets/images/train_ch_2.png')}
+          />
+        );
+      } else {
+        if (choosen_ch == 3) {
+          return (
+            <Image
+              style={[styles.image_view_chosen_character, style]}
+              source={require('../assets/images/train_ch_3.png')}
+            />
+          );
+        } else {
+          return (
+            <Image
+              style={[styles.image_view_chosen_character, style]}
+              source={require('../assets/images/train_ch_4.png')}
             />
           );
         }

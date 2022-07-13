@@ -8,10 +8,17 @@ export const START_GAME_CHOOSE_NAME = 'playTrainStartGame';
 export const SelectedShape = {
   Animals: 'Animals',
   Plants: 'Plants',
-  // Animals: 'Animals',
+  Fishes: 'Fishes',
+  Breads: 'Breads',
 };
 export const SelectedBG = {
   Buildings: 'Buildings',
   Jungle: 'Jungle',
+  // Animals: 'Animals',
+};
+
+export const NumsOrLetters = {
+  Numbers: 'Numbers',
+  Letters: 'Letters',
   // Animals: 'Animals',
 };

@@ -9,54 +9,147 @@ import {
   Image,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  AppState,
 } from 'react-native';
-import {SelectedShape} from '../../constants/constants.js';
+import {
+  NumsOrLetters,
+  SelectedBG,
+  SelectedShape,
+  START_GAME_CHOOSE_NAME,
+} from '../../constants/constants.js';
 import ShowChoosenChImage from '../../utils/Utils.js';
+
+var shapeSelected = false;
+var bgSelected = false;
+
 export default function ChoosBgAndShape({}) {
-  const [selectedShape, setSelectedShape] = useState(false);
-  const [selectedBg, setSelectedBg] = useState(false);
+  const [selectedShape, setSelectedShape] = useState('');
+  const [selectedBg, setSelectedBg] = useState('');
+
+  const [animalsSelected, setAnimalSelected] = useState(false);
+  const [plantsSelected, setPlantsSelected] = useState(false);
+  const [citySelected, setCitySelected] = useState(false);
+  const [jungleSelected, setJungleSelected] = useState(false);
+
+  const [showNextButton, setNextButtonVisibility] = useState(false);
 
   const navigation = useNavigation();
   const route = useRoute();
 
+  const {numOrLetter} = route.params;
+
   const _onPressAnimalLetters = () => {
-    navigation.navigate(START_GAME_CHOOSE_NAME, {
-      selectedShape: SelectedShape.Animals,
-      selectedBg: 0,
-    });
+    // navigation.navigate(START_GAME_CHOOSE_NAME, {
+    //   selectedShape: SelectedShape.Animals,
+    //   selectedBg: 0,
+    // });
     // alert('_onPressAnimalLetters');
+    setAnimalSelected(true);
+    setPlantsSelected(false);
+
+    if (numOrLetter != NumsOrLetters.Numbers) {
+      setSelectedShape(SelectedShape.Fishes);
+    } else {
+      setSelectedShape(SelectedShape.Animals);
+    }
+    shapeSelected = true;
+    checkNextVisibility();
+  };
+
+  const checkNextVisibility = () => {
+    if (shapeSelected && bgSelected) {
+      setNextButtonVisibility(true);
+    }
   };
 
   const _onPressPlantsLetters = () => {
-    navigation.navigate(START_GAME_CHOOSE_NAME, {
-      selectedShape: 0,
-      selectedBg: 0,
-    });
+    // navigation.navigate(START_GAME_CHOOSE_NAME, {
+    //   selectedShape: 0,
+    //   selectedBg: 0,
+    // });
     // alert('_onPressPlantsLetters');
+    setAnimalSelected(false);
+    setPlantsSelected(true);
+    if (numOrLetter != NumsOrLetters.Numbers) {
+      setSelectedShape(SelectedShape.Breads);
+    } else {
+      setSelectedShape(SelectedShape.Plants);
+    }
+
+    shapeSelected = true;
+    checkNextVisibility();
   };
 
   const _onPressBlanckLettersAbove = () => {
     // navigation.navigate(CHARACTER_CHOOSE_NAME);
-    alert('_onPressBlanckLettersAbove');
+    // alert('_onPressBlanckLettersAbove');
+
+    console.log(selectedShape);
+    console.log(selectedBg);
+
+    // if (selectedShape.length != 0 && selectedBg.length != 0) {
+    //   navigation.navigate(START_GAME_CHOOSE_NAME, {
+    //     shape: selectedShape,
+    //     bg: selectedBg,
+    //   });
+    // }
+  };
+
+  const _onPressNextButton = () => {
+    // navigation.navigate(CHARACTER_CHOOSE_NAME);
+    // alert('_onPressBlanckLettersAbove');
+
+    console.log(selectedShape);
+    console.log(selectedBg);
+
+    if (selectedShape.length != 0 && selectedBg.length != 0) {
+      navigation.navigate(START_GAME_CHOOSE_NAME, {
+        shape: selectedShape,
+        bg: selectedBg,
+      });
+    }
   };
 
   const _onPressCityButton = () => {
     // navigation.navigate(CHARACTER_CHOOSE_NAME);
-    alert('_onPressCityButton');
+    // alert('_onPressCityButton');
+    setCitySelected(true);
+    setJungleSelected(false);
+
+    setSelectedBg(SelectedBG.Buildings);
+
+    bgSelected = true;
+    checkNextVisibility();
   };
 
   const _onPressCountryButton = () => {
     // navigation.navigate(CHARACTER_CHOOSE_NAME);
-    alert('_onPressCountryButton');
+    // alert('_onPressCountryButton');
+    setCitySelected(false);
+    setJungleSelected(true);
+    setSelectedBg(SelectedBG.Jungle);
+
+    bgSelected = true;
+    checkNextVisibility();
   };
 
   const _onPressBlanckLettersDown = () => {
     // navigation.navigate(CHARACTER_CHOOSE_NAME);
-    alert('_onPressBlanckLettersDown');
+    // alert('_onPressBlanckLettersDown');
   };
+
+  // var passedBg = SelectedBG.Buildings;
+  // var passedShape = SelectedShape.Animals;
 
   useEffect(() => {
     // alert(route.params.choosen_ch);
+    // if (selectedShape === SelectedShape.Animals) {
+    // } else {
+    // }
+    // if (selectedBg === SelectedBG.Buildings) {
+    //   passedBg = ""
+    // } else {
+    // }
   });
 
   return (
@@ -127,31 +220,51 @@ export default function ChoosBgAndShape({}) {
                   flexDirection: 'row-reverse',
                 }}>
                 <TouchableWithoutFeedback onPress={_onPressAnimalLetters}>
-                  <View style={{width: 200, height: 200, padding: 10}}>
+                  <View
+                    style={[
+                      {width: 170, height: 170, padding: 0},
+                      animalsSelected ? styles.border_style : {},
+                    ]}>
                     <Image
                       style={{
                         width: '100%',
                         height: '100%',
                         resizeMode: 'contain',
                       }}
-                      source={require('../../assets/images/animal-letters.png')}
+                      source={
+                        numOrLetter === NumsOrLetters.Numbers
+                          ? require('../../assets/images/animal-letters.png')
+                          : require('../../assets/images/button-fish.png')
+                      }
                     />
                   </View>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback onPress={_onPressPlantsLetters}>
-                  <View style={{width: 155, height: 155, padding: 10}}>
+                  <View
+                    style={[
+                      {width: 155, height: 155, padding: 10},
+                      plantsSelected ? styles.border_style : {},
+                    ]}>
                     <Image
                       style={{
                         width: '100%',
                         height: '100%',
                         resizeMode: 'contain',
                       }}
-                      source={require('../../assets/images/plants-letters.png')}
+                      source={
+                        numOrLetter === NumsOrLetters.Numbers
+                          ? require('../../assets/images/plants-letters.png')
+                          : require('../../assets/images/button-breds.png')
+                      }
                     />
                   </View>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback onPress={_onPressBlanckLettersAbove}>
-                  <View style={{width: 155, height: 155, padding: 10}}>
+                  <View
+                    style={[
+                      {width: 165, height: 165, padding: 10},
+                      // animalsSelected ? styles.border_style : {},
+                    ]}>
                     <Image
                       style={{
                         width: '100%',
@@ -179,7 +292,11 @@ export default function ChoosBgAndShape({}) {
                     flexDirection: 'row-reverse',
                   }}>
                   <TouchableWithoutFeedback onPress={_onPressCityButton}>
-                    <View style={{width: 175, height: 175, padding: 10}}>
+                    <View
+                      style={[
+                        {width: 175, height: 175, padding: 10},
+                        citySelected ? styles.border_style : {},
+                      ]}>
                       <Image
                         style={{
                           width: '100%',
@@ -191,7 +308,11 @@ export default function ChoosBgAndShape({}) {
                     </View>
                   </TouchableWithoutFeedback>
                   <TouchableWithoutFeedback onPress={_onPressCountryButton}>
-                    <View style={{width: 175, height: 175, padding: 10}}>
+                    <View
+                      style={[
+                        {width: 175, height: 175, padding: 10},
+                        jungleSelected ? styles.border_style : {},
+                      ]}>
                       <Image
                         style={{
                           width: '100%',
@@ -203,7 +324,12 @@ export default function ChoosBgAndShape({}) {
                     </View>
                   </TouchableWithoutFeedback>
                   <TouchableWithoutFeedback onPress={_onPressBlanckLettersDown}>
-                    <View style={{width: 155, height: 155, padding: 10}}>
+                    <View
+                      style={[
+                        {width: 165, height: 165, padding: 10},
+                        // styles.border_style,
+                        // animalsSelected ? styles.border_style : {},
+                      ]}>
                       <Image
                         style={{
                           width: '100%',
@@ -222,16 +348,77 @@ export default function ChoosBgAndShape({}) {
         <View
           style={{
             height: '100%',
-            width: '1.5%',
+            width: '4%',
             // flex: 1,
+            // backgroundColor: '#ffffff',
             backgroundColor: '#fe8d1a',
-          }}
-        />
+
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={{
+              height: '100%',
+              // width: '15%',
+              // flex: 1,
+              // backgroundColor: '#fe8d1a',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+            }}>
+            <View
+              style={{
+                height: '100%',
+                // width: '15%',
+                flex: 1,
+                backgroundColor: '#ffffff',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            />
+            <View
+              style={{
+                height: '100%',
+                // width: '15%',
+                flex: 1,
+                backgroundColor: '#fe8d1a',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            />
+            <View
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                // alignItems: 'center',
+                justifyContent: 'center',
+                // backgroundColor: 'green',
+              }}>
+              <TouchableOpacity onPress={_onPressNextButton}>
+                {showNextButton && (
+                  <Image
+                    style={{
+                      // width: '15%',
+                      // height: '15%',
+                      width: 50,
+                      height: 50,
+                      resizeMode: 'contain',
+                    }}
+                    source={require('../../assets/images/next-button.png')}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
         <View
           style={{
             height: '100%',
             width: '13%',
             // flex: 1,
+            // backgroundColor: 'green',
             backgroundColor: '#ffffff',
           }}
         />
@@ -239,18 +426,16 @@ export default function ChoosBgAndShape({}) {
 
       <View style={styles.characters_choosen_}>
         <View style={styles.flex1_choosen_ch}>
-          <TouchableWithoutFeedback>
-            <View style={styles.ch_image}>
-              {/* <Image
+          <View style={styles.ch_image}>
+            {/* <Image
                 style={styles.image_view}
                 source={require('../../assets/images/ch3.png')}
               /> */}
-              <ShowChoosenChImage
+            {/* <ShowChoosenChImage
                 choosen_ch={route.params.choosen_ch}
                 style={styles.image_view}
-              />
-            </View>
-          </TouchableWithoutFeedback>
+              /> */}
+          </View>
         </View>
         <View style={styles.flex2_chosen_ch}>
           <View
@@ -268,9 +453,12 @@ export default function ChoosBgAndShape({}) {
 
 const styles = StyleSheet.create({
   border_style: {
-    borderColor: 'red',
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
+    // borderColor: 'red',
+    // borderWidth: 4,
+    // borderBottomWidth: 1,
+    // borderTopWidth: 1,
+
+    padding: 30,
   },
   ch_image: {
     width: '100%',
