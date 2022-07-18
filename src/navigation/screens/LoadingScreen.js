@@ -15,10 +15,10 @@ export default function LoadingScreen({}) {
 
   return (
     <View style={styles.container}>
-      <Image
+      {/* <Image
         source={require('../../assets/images/splash.jpeg')}
         // source={Splash}
-        style={styles.backgroundImage}></Image>
+        style={styles.backgroundImage}></Image> */}
     </View>
   );
 }

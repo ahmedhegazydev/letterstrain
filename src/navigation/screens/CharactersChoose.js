@@ -130,12 +130,13 @@ export default function CharactersChoose({}) {
 const styles = StyleSheet.create({
   image_view: {
     flex: 1,
-    width: 160,
+    width: 150,
+    resizeMode: 'contain',
   },
   ch_image: {
     width: 80,
-    height: 240,
-    marginBottom: 90,
+    height: 260,
+    marginBottom: 100,
     marginRight: 90,
     marginLeft: 0,
   },
@@ -189,23 +190,26 @@ const styles = StyleSheet.create({
 
   backgroundImageFooter: {
     // flex: 1,
-    // resizeMode: 'cover',
-    resizeMode: 'stretch',
+    resizeMode: 'cover',
+    // resizeMode: 'stretch',
+    // resizeMode: 'contain',
     // resizeMode: 'repeat',
-    // height: 500,
-    // width: 700,
+    height: '100%',
+    width: '100%',
     // paddingTop: -550,
+  },
+  footer: {
+    backgroundColor: '#FFEC00',
+    // backgroundColor: 'red',
+    // height: 250,
+    width: '100%',
+    flex: 1, // pushes the footer to the end of the screen
   },
   contentContainer: {
     backgroundColor: '#FFEC00',
     flex: 1, // pushes the footer to the end of the screen
   },
-  footer: {
-    backgroundColor: '#FFEC00',
-    // backgroundColor: '#FFFFFF',
-    // height: 250,
-    flex: 1, // pushes the footer to the end of the screen
-  },
+
   backgroundImage: {
     // resizeMode: 'cover',
     resizeMode: 'stretch',

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 // import GifImage from '@lowkey/react-native-gif';
 
-import Splash from '../../assets/images/splash.jpeg';
+// import Splash from '../../assets/images/splash.jpeg';
 import {CHARACTER_CHOOSE_NAME} from '../../constants/constants';
 export default function SplashScreen({}) {
   const navigation = useNavigation();
