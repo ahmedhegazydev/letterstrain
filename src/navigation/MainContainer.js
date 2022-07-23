@@ -27,6 +27,7 @@ import {
   START_GAME_CHOOSE_NAME,
   SelectedShape,
   NumsOrLetters,
+  COME_TO_WRITE_NAME,
 } from '../constants/constants';
 import SplashScreen from './screens/SplashScreen';
 import LoadingScreen from './screens/LoadingScreen';
@@ -35,6 +36,7 @@ import CharactersChoose from './screens/CharactersChoose';
 import ChooseNumbersOrLetters from './screens/ChooseNumbersOrLetters';
 import ChooseBgAndShape from './screens/ChooseBgAndShape';
 import PlayTrainScreen from './screens/PlayTrainScreen';
+import ComeToWriting from './screens/ComeToWriting';
 const Stack = createStackNavigator();
 
 export default function MainContainer() {
@@ -99,7 +101,7 @@ export default function MainContainer() {
           name={LOADING_NAME}
           component={LoadingScreen}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           options={({route}) => ({
             title: 'CharactersChoose',
             headerShown: false,
@@ -108,8 +110,8 @@ export default function MainContainer() {
           name={CHARACTER_CHOOSE_NAME}
           component={CharactersChoose}
           initialParams={{itemId: 100}}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           options={({route}) => ({
             title: 'ChooseNumbersOrLetters',
             headerShown: false,
@@ -118,7 +120,7 @@ export default function MainContainer() {
           name={NUMBERS_OR_LETTERS_CHOOSE_NAME}
           component={ChooseNumbersOrLetters}
           initialParams={{itemId: 100}}
-        />
+        /> */}
         <Stack.Screen
           options={({route}) => ({
             title: 'ChooseBgAndShape',
@@ -127,7 +129,7 @@ export default function MainContainer() {
           })}
           name={BG_SHAPE_CHOOSE_NAME}
           component={ChooseBgAndShape}
-          // initialParams={{numOrLetter: NumsOrLetters.Numbers}}
+          initialParams={{numOrLetter: NumsOrLetters.Numbers}}
           // initialParams={{numOrLetter: NumsOrLetters.Letters}}
         />
         <Stack.Screen
@@ -139,6 +141,16 @@ export default function MainContainer() {
           initialParams={{itemId: 100}}
           name={START_GAME_CHOOSE_NAME}
           component={PlayTrainScreen}
+        />
+        <Stack.Screen
+          options={({route}) => ({
+            title: 'ComeToWriting',
+            headerShown: false,
+            leftToRightAnimation,
+          })}
+          initialParams={{itemId: 100}}
+          name={COME_TO_WRITE_NAME}
+          component={ComeToWriting}
         />
       </Stack.Navigator>
     </NavigationContainer>

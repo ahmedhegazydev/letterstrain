@@ -17,6 +17,7 @@ import {
   AppState,
 } from 'react-native';
 import {
+  COME_TO_WRITE_NAME,
   NUMBERS_OR_LETTERS_CHOOSE_NAME,
   SelectedBG,
   SelectedShape,
@@ -849,6 +850,8 @@ export default function PlayTrainScreen({}) {
 
   const startRecording = () => {
     // alert('startRecording');
+    SoundPlayer.stop();
+    playBgSound(true);
     SoundRecorder.start(
       // SoundRecorder.PATH_CACHE
       SoundRecorder.PATH_DOCUMENT + '/test.mp3',
@@ -1092,7 +1095,9 @@ export default function PlayTrainScreen({}) {
 
   var workingArrayObject = animals;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // navigation.push(COME_TO_WRITE_NAME, {});
+  }, []);
 
   const handlingGridOrImageView = object => {
     var view;
@@ -1108,7 +1113,7 @@ export default function PlayTrainScreen({}) {
             width: 120,
             // height: '100%',
             // marginLeft: 200,
-            // marginTop: 40,
+            marginTop: -100,
             // paddingLeft: 30,
             // margin:
             // width: '100%',
@@ -1121,18 +1126,18 @@ export default function PlayTrainScreen({}) {
         var count = parseInt(object.character);
         for (let i = 0; i < count; i++) {
           var image = (
-            <View>
+            <View style={{}}>
               <Image
                 source={object.image}
                 style={{
                   // resizeMode: 'stretch',
                   resizeMode: 'contain',
                   // resizeMode: 'cover',
-                  // flex: 1,
-                  width: 40,
-                  height: 40,
+                  // backgroundColor: 'red',
+                  width: 35,
+                  height: 35,
+                  // margin: 5,
                   // marginLeft: 200,
-                  // marginTop: 40,
                   // paddingLeft: 30,
                   // width: '100%',
                   // margin: 5,
@@ -1144,19 +1149,25 @@ export default function PlayTrainScreen({}) {
           imageList.push(image);
         }
         view = (
+          // <Text>dfsdf sdf sdf sdf sdf sdf sd</Text>
           <FlatGrid
-            itemDimension={0}
+            itemDimension={1}
             data={imageList}
-            spacing={0}
-            adjustGridToStyles={true}
+            // spacing={10}
+            // staticDimension={true}
+            // maxDimension={1}
+            // adjustGridToStyles={true}
             style={{
               // backgroundColor: 'red',
-              width: 200,
-              height: 100,
+              width: 250,
+              // height: '70%',
+              maxHeight: 200,
+              // maxHeight: shape == SelectedShape.Breads ? 150 : 200,
               marginRight: -100,
               marginTop: -70,
             }}
-            // fixed={true}
+            fixed={true}
+            // maxItemsPerRow={shape == SelectedShape.Breads ? 6 : 5}
             maxItemsPerRow={5}
             renderItem={({item}) => <Text>{item}</Text>}
           />
@@ -1187,6 +1198,8 @@ export default function PlayTrainScreen({}) {
         <View
           key={object.image}
           style={{
+            transform: [{rotate: '180deg'}],
+
             // backgroundColor: 'yellow',
             width: '100%',
             height: '100%',
@@ -1257,20 +1270,29 @@ export default function PlayTrainScreen({}) {
                   // justifyContent: 'center',
                   // alignItems: 'center',
                 }}>
-                <Image
-                  source={object.car}
-                  style={{
-                    // resizeMode: 'stretch',
-                    resizeMode: 'contain',
-                    // resizeMode: 'cover',
-                    // flex: 1,
-                    height: '160%',
-                    marginLeft: -40,
-                    marginTop: -50,
-                    // marginBottom: 50,
-                    width: '160%',
-                  }}
-                />
+                {shape === SelectedShape.Breads ? (
+                  <Image
+                    source={object.car}
+                    style={{
+                      resizeMode: 'contain',
+                      height: '190%',
+                      marginLeft: -100,
+                      marginTop: -100,
+                      width: '190%',
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={object.car}
+                    style={{
+                      resizeMode: 'contain',
+                      height: '160%',
+                      marginLeft: -40,
+                      marginTop: -50,
+                      width: '160%',
+                    }}
+                  />
+                )}
 
                 <View
                   style={{
@@ -1303,49 +1325,156 @@ export default function PlayTrainScreen({}) {
                       marginLeft: 105,
                       marginTop: -60,
                     }}>
-                    <View
-                      style={{
-                        width: 110,
-                        height: '100%',
-                      }}>
-                      <Image
-                        source={object.numberLetterContainer}
-                        style={{
-                          // resizeMode: 'stretch',
-                          resizeMode: 'contain',
-                          // resizeMode: 'cover',
-                          // flex: 1,
-                          // width: 110,
-                          height: '100%',
-                          // marginLeft: 200,
-                          // marginTop: 40,
-                          // paddingLeft: 30,
-                          // margin:
-                          width: '100%',
-                        }}
-                      />
-
+                    {shape === SelectedShape.Fishes && (
                       <View
                         style={{
+                          width: 110,
                           height: '100%',
-                          // backgroundColor: 'red',
-                          width: '100%',
-                          position: 'absolute',
-                          textAlign: 'center',
-                          // flex: 1,
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          // marginTop: -60,
+                          // marginRight: 30,
                         }}>
-                        <Text
+                        <Image
+                          source={object.numberLetterContainer}
                           style={{
-                            fontFamily: 'myriad_arabic_bold',
-                            fontSize: 90,
-                            color: '#000000',
+                            resizeMode: 'contain',
+                            height: '100%',
+                            width: '100%',
+                          }}
+                        />
+                        <View
+                          style={{
+                            height: '100%',
+
+                            width: '100%',
+                            position: 'absolute',
+                            textAlign: 'center',
+
+                            justifyContent: 'center',
+                            alignItems: 'center',
                           }}>
-                          {object.character}
-                        </Text>
+                          <Text
+                            style={{
+                              fontFamily: 'myriad_arabic_bold',
+                              fontSize: 90,
+                              color: '#000000',
+                            }}>
+                            {object.character}
+                          </Text>
+                        </View>
                       </View>
-                    </View>
+                    )}
+                    {shape === SelectedShape.Animals && (
+                      <View
+                        style={{
+                          width: 110,
+                          height: '100%',
+                          // marginTop: -60,
+                          marginRight: 30,
+                        }}>
+                        <Image
+                          source={object.numberLetterContainer}
+                          style={{
+                            resizeMode: 'contain',
+                            height: '100%',
+                            width: '100%',
+                          }}
+                        />
+                        <View
+                          style={{
+                            height: '100%',
+
+                            width: '100%',
+                            position: 'absolute',
+                            textAlign: 'center',
+
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}>
+                          <Text
+                            style={{
+                              fontFamily: 'myriad_arabic_bold',
+                              fontSize: 90,
+                              color: '#000000',
+                            }}>
+                            {object.character}
+                          </Text>
+                        </View>
+                      </View>
+                    )}
+                    {shape === SelectedShape.Plants && (
+                      <View
+                        style={{
+                          width: 110,
+                          height: '100%',
+                          marginTop: -60,
+                          marginRight: 30,
+                        }}>
+                        <Image
+                          source={object.numberLetterContainer}
+                          style={{
+                            resizeMode: 'contain',
+                            height: '100%',
+                            width: '100%',
+                          }}
+                        />
+                        <View
+                          style={{
+                            height: '100%',
+                            width: '100%',
+                            position: 'absolute',
+                            textAlign: 'center',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}>
+                          <Text
+                            style={{
+                              fontFamily: 'myriad_arabic_bold',
+                              fontSize: 90,
+                              color: '#000000',
+                            }}>
+                            {object.character}
+                          </Text>
+                        </View>
+                      </View>
+                    )}
+                    {shape === SelectedShape.Breads && (
+                      <View
+                        style={{
+                          width: 110,
+                          height: '100%',
+                          marginTop: -80,
+                          marginRight: -30,
+                        }}>
+                        <Image
+                          source={object.numberLetterContainer}
+                          style={{
+                            resizeMode: 'contain',
+                            height: '100%',
+                            width: '100%',
+                          }}
+                        />
+                        <View
+                          style={{
+                            height: '100%',
+
+                            width: '100%',
+                            position: 'absolute',
+                            textAlign: 'center',
+
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                          }}>
+                          <Text
+                            style={{
+                              fontFamily: 'myriad_arabic_bold',
+                              fontSize: 90,
+                              color: '#000000',
+                            }}>
+                            {object.character}
+                          </Text>
+                        </View>
+                      </View>
+                    )}
                   </View>
                   <View
                     style={{
@@ -1405,20 +1534,16 @@ export default function PlayTrainScreen({}) {
                         {object.name}
                       </Text>
                     </View>
+
                     <View
                       style={{
                         height: '100%',
                         // backgroundColor: 'red',
                         width: '100%',
                         position: 'absolute',
-                        // textAlign: 'center',
-                        // flex: 1,
-                        // justifyContent: 'flex-end',
                         justifyContent: 'center',
-
                         alignItems: 'center',
                         paddingRight: 50,
-                        // paddingBottom: 6,
                       }}>
                       {handlingGridOrImageView(object)}
                     </View>
@@ -1815,7 +1940,7 @@ export default function PlayTrainScreen({}) {
                   <TouchableOpacity onPress={playBackgroundSound}>
                     <Image
                       source={
-                        soundBgPlaying
+                        !soundBgPlaying
                           ? require('../../assets/images/sound-button.png')
                           : require('../../assets/images/sound-button-off.png')
                       }
@@ -2221,7 +2346,7 @@ export default function PlayTrainScreen({}) {
             </View>
           </View>
         </View>
-        {/* ============= */}
+        {/* =======First Car====== */}
         <View
           style={{
             // backgroundColor: 'yellow',
@@ -2235,6 +2360,7 @@ export default function PlayTrainScreen({}) {
           }}>
           <AnimatedPagerView
             style={{
+              transform: [{rotate: '180deg'}],
               // backgroundColor: 'yellow',
               // width: '100%',
               // height: '100%',
@@ -2242,10 +2368,9 @@ export default function PlayTrainScreen({}) {
               // position: 'absolute',
               flexDirection: 'row',
             }}
-            layoutDirection="ltr"
-            // layoutDirection="rtl"
+            // layoutDirection="ltr"
+            layoutDirection="rtl"
             // layoutDirection="locale"
-
             pageMargin={0}
             orientation="horizontal"
             // transitionStyle="scroll"
@@ -2254,6 +2379,8 @@ export default function PlayTrainScreen({}) {
             <View
               key="1"
               style={{
+                transform: [{rotate: '180deg'}],
+
                 // backgroundColor: 'yellow',
                 // width: '100%',
                 // height: '100%',
@@ -2370,14 +2497,15 @@ export default function PlayTrainScreen({}) {
                         resizeMode: 'contain',
                         // resizeMode: 'cover',
                         // flex: 1,
-                        height: '100%',
-                        marginLeft: 50,
-                        marginTop: 40,
-                        width: '100%',
+                        height: '145%',
+                        marginLeft: -30,
+                        marginTop: -50,
+                        width: '145%',
                       }}
                     />
                   )}
                   {shape === SelectedShape.Animals && (
+                    // <View>
                     <Image
                       source={animals[0].car}
                       style={{
@@ -2385,12 +2513,13 @@ export default function PlayTrainScreen({}) {
                         resizeMode: 'contain',
                         // resizeMode: 'cover',
                         // flex: 1,
-                        height: '100%',
-                        marginLeft: 50,
-                        marginTop: 40,
-                        width: '100%',
+                        height: '145%',
+                        marginLeft: -30,
+                        marginTop: -50,
+                        width: '145%',
                       }}
                     />
+                    // </View>
                   )}
                   {shape === SelectedShape.Fishes && (
                     <Image
@@ -2400,10 +2529,10 @@ export default function PlayTrainScreen({}) {
                         resizeMode: 'contain',
                         // resizeMode: 'cover',
                         // flex: 1,
-                        height: '100%',
-                        marginLeft: 50,
-                        marginTop: 40,
-                        width: '100%',
+                        height: '145%',
+                        marginLeft: -30,
+                        marginTop: -50,
+                        width: '145%',
                       }}
                     />
                   )}
@@ -2415,10 +2544,10 @@ export default function PlayTrainScreen({}) {
                         resizeMode: 'contain',
                         // resizeMode: 'cover',
                         // flex: 1,
-                        height: '100%',
-                        marginLeft: 50,
-                        marginTop: 40,
-                        width: '100%',
+                        height: '180%',
+                        marginLeft: -140,
+                        marginTop: -100,
+                        width: '180%',
                       }}
                     />
                   )}
@@ -2451,110 +2580,183 @@ export default function PlayTrainScreen({}) {
                         paddingRight: 12,
                         paddingTop: 2,
                       }}>
-                      <View
-                        style={{
-                          width: 110,
-                          height: '100%',
-                        }}>
-                        {shape === SelectedShape.Breads && (
+                      {shape === SelectedShape.Breads && (
+                        <View
+                          style={{
+                            width: 110,
+                            height: '100%',
+                            marginTop: -70,
+                          }}>
                           <Image
                             source={breads[0].numberLetterContainer}
                             style={{
-                              // resizeMode: 'stretch',
                               resizeMode: 'contain',
-                              // resizeMode: 'cover',
-                              // flex: 1,
-                              // width: 110,
                               height: '100%',
-                              // marginLeft: 200,
-                              // marginTop: 40,
-                              // paddingLeft: 30,
-                              // margin:
+                              marginTop: -70,
+                              marginLeft: 70,
                               width: '100%',
                             }}
                           />
-                        )}
-                        {shape === SelectedShape.Animals && (
+                        </View>
+                      )}
+                      {shape === SelectedShape.Animals && (
+                        <View
+                          style={{
+                            width: 110,
+                            height: '100%',
+                          }}>
                           <Image
                             source={animals[0].numberLetterContainer}
                             style={{
-                              // resizeMode: 'stretch',
                               resizeMode: 'contain',
-                              // resizeMode: 'cover',
-                              // flex: 1,
-                              // width: 110,
                               height: '100%',
-                              // marginLeft: 200,
-                              // marginTop: 40,
-                              // paddingLeft: 30,
-                              // margin:
+                              marginLeft: 30,
+                              marginTop: -60,
                               width: '100%',
                             }}
                           />
-                        )}
-                        {shape === SelectedShape.Plants && (
+                        </View>
+                      )}
+                      {shape === SelectedShape.Plants && (
+                        <View
+                          style={{
+                            width: 110,
+                            height: '100%',
+                          }}>
                           <Image
                             source={plants[0].numberLetterContainer}
                             style={{
-                              // resizeMode: 'stretch',
                               resizeMode: 'contain',
-                              // resizeMode: 'cover',
-                              // flex: 1,
-                              // width: 110,
                               height: '100%',
-                              // marginLeft: 200,
-                              // marginTop: 40,
-                              // paddingLeft: 30,
-                              // margin:
+                              marginLeft: 30,
+                              marginTop: -100,
                               width: '100%',
                             }}
                           />
-                        )}
-                        {shape === SelectedShape.Fishes && (
+                        </View>
+                      )}
+                      {shape === SelectedShape.Fishes && (
+                        <View
+                          style={{
+                            width: 110,
+                            height: '100%',
+                          }}>
                           <Image
                             source={fishes[0].numberLetterContainer}
                             style={{
                               // resizeMode: 'stretch',
                               resizeMode: 'contain',
-                              // resizeMode: 'cover',
-                              // flex: 1,
-                              // width: 110,
                               height: '100%',
-                              // marginLeft: 200,
-                              // marginTop: 40,
-                              // paddingLeft: 30,
-                              // margin:
+                              marginTop: -70,
+                              marginLeft: 60,
                               width: '100%',
                             }}
                           />
-                        )}
-                        <View
-                          style={{
-                            height: '100%',
-                            // backgroundColor: 'red',
-                            width: '100%',
-                            position: 'absolute',
-                            textAlign: 'center',
-                            // flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                          }}>
-                          <Text
-                            style={{
-                              fontFamily: 'myriad_arabic_bold',
-                              fontSize: 90,
-                              color: '#000000',
-                            }}>
-                            {shape === SelectedShape.Animals &&
-                              animals[0].character}
-                            {shape === SelectedShape.Plants &&
-                              plants[0].character}
-                            {shape === SelectedShape.Fishes &&
-                              fishes[0].character}
-                            {shape === SelectedShape.Breads &&
-                              breads[0].character}
-                          </Text>
                         </View>
+                      )}
+                      {/* ============================================ */}
+                      <View
+                        style={{
+                          width: 110,
+                          height: '100%',
+                          position: 'absolute',
+                        }}>
+                        {shape === SelectedShape.Fishes && (
+                          <View
+                            style={{
+                              height: '100%',
+                              // backgroundColor: 'red',
+                              width: '100%',
+                              position: 'absolute',
+                              textAlign: 'center',
+                              // flex: 1,
+                              marginLeft: 60,
+                              marginTop: -70,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}>
+                            <Text
+                              style={{
+                                fontFamily: 'myriad_arabic_bold',
+                                fontSize: 90,
+                                color: '#000000',
+                              }}>
+                              {fishes[0].character}
+                            </Text>
+                          </View>
+                        )}
+                        {shape === SelectedShape.Animals && (
+                          <View
+                            style={{
+                              height: '100%',
+                              // backgroundColor: 'red',
+                              width: '100%',
+                              position: 'absolute',
+                              textAlign: 'center',
+                              // flex: 1,
+                              marginLeft: 35,
+                              marginTop: -45,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}>
+                            <Text
+                              style={{
+                                fontFamily: 'myriad_arabic_bold',
+                                fontSize: 90,
+                                color: '#000000',
+                              }}>
+                              {animals[0].character}
+                            </Text>
+                          </View>
+                        )}
+                        {shape === SelectedShape.Breads && (
+                          <View
+                            style={{
+                              height: '100%',
+                              // backgroundColor: 'red',
+                              width: '100%',
+                              position: 'absolute',
+                              textAlign: 'center',
+                              // flex: 1,
+                              marginLeft: 55,
+                              marginTop: -100,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}>
+                            <Text
+                              style={{
+                                fontFamily: 'myriad_arabic_bold',
+                                fontSize: 90,
+                                color: '#000000',
+                              }}>
+                              {breads[0].character}
+                            </Text>
+                          </View>
+                        )}
+                        {shape === SelectedShape.Plants && (
+                          <View
+                            style={{
+                              height: '100%',
+                              // backgroundColor: 'red',
+                              width: '100%',
+                              position: 'absolute',
+                              textAlign: 'center',
+                              // flex: 1,
+                              marginLeft: 35,
+                              marginTop: -75,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}>
+                            <Text
+                              style={{
+                                fontFamily: 'myriad_arabic_bold',
+                                fontSize: 80,
+                                color: '#000000',
+                              }}>
+                              {plants[0].character}
+                            </Text>
+                          </View>
+                        )}
                       </View>
                     </View>
                     <View
@@ -2659,7 +2861,7 @@ export default function PlayTrainScreen({}) {
                               width: 70,
                               // height: '100%',
                               // marginLeft: 200,
-                              // marginTop: 40,
+                              marginTop: -100,
                               // paddingLeft: 30,
                               // margin:
                               // width: '100%',
@@ -2677,7 +2879,7 @@ export default function PlayTrainScreen({}) {
                               width: 70,
                               // height: '100%',
                               // marginLeft: 200,
-                              // marginTop: 40,
+                              marginTop: -100,
                               // paddingLeft: 30,
                               // margin:
                               // width: '100%',
@@ -2695,7 +2897,7 @@ export default function PlayTrainScreen({}) {
                               width: 70,
                               // height: '100%',
                               // marginLeft: 200,
-                              // marginTop: 40,
+                              marginTop: -100,
                               // paddingLeft: 30,
                               // margin:
                               // width: '100%',
@@ -2713,7 +2915,7 @@ export default function PlayTrainScreen({}) {
                               width: 70,
                               // height: '100%',
                               // marginLeft: 200,
-                              // marginTop: 40,
+                              marginTop: -100,
                               // paddingLeft: 30,
                               // margin:
                               // width: '100%',

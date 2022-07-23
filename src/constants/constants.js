@@ -4,6 +4,7 @@ export const CHARACTER_CHOOSE_NAME = 'CharactersChoose';
 export const NUMBERS_OR_LETTERS_CHOOSE_NAME = 'ChooseNumbersOrLetters';
 export const BG_SHAPE_CHOOSE_NAME = 'ChooseBgAndShape';
 export const START_GAME_CHOOSE_NAME = 'playTrainStartGame';
+export const COME_TO_WRITE_NAME = 'COME_TO_WRITE_NAME';
 
 export const SelectedShape = {
   Animals: 'Animals',

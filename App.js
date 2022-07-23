@@ -26,6 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import MainContainer from './src/navigation/MainContainer';
 
+console.disableYellowBox = true;
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 

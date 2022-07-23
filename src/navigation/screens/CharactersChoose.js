@@ -208,13 +208,18 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#FFEC00',
     flex: 1, // pushes the footer to the end of the screen
+    width: '100%',
   },
 
   backgroundImage: {
-    // resizeMode: 'cover',
-    resizeMode: 'stretch',
+    resizeMode: 'cover',
     // height: 200,
-    marginTop: -180,
+    marginTop: -145,
+    // resizeMode: 'stretch',
+    // resizeMode: 'contain',
+    // resizeMode: 'repeat',
+    height: '100%',
+    width: '100%',
   },
   loginScreenButton: {
     marginRight: 40,
